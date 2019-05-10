@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/grgur/webpack-gimbal-plugin.git"
+    "url": "git+https://github.com/ModusCreateOrg/webpack-gimbal-plugin.git"
   },
   "keywords": [
     "webpack",
@@ -20,9 +20,9 @@
   "author": "Grgur Grisogono <grgur@moduscreate.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/grgur/webpack-gimbal-plugin/issues"
+    "url": "https://github.com/ModusCreateOrg/webpack-gimbal-plugin/issues"
   },
-  "homepage": "https://github.com/grgur/webpack-gimbal-plugin#readme",
+  "homepage": "https://github.com/ModusCreateOrg/webpack-gimbal-plugin#readme",
   "dependencies": {
     "@modus/gimbal": "^1.0.7"
   }

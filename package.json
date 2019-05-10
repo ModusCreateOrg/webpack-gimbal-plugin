@@ -1,6 +1,6 @@
 {
   "name": "webpack-gimbal-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Webpack plugin that utilizes Gimbal to maintain performance budgets",
   "main": "index.js",
   "scripts": {

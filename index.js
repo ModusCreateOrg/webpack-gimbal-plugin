@@ -85,7 +85,7 @@ module.exports = class GimbalPlugin {
     cb();
   }
   /**
-   * @param {GimbalResults}  results - A string param.
+   * @param {GimbalResults}  results - Gimbal audit results
    */
   processMessages(compilation, results) {
     const failed = results.data.filter(result => !result.success);

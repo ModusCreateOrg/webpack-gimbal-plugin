@@ -4,7 +4,7 @@
 
 # Webpack Gimbal Plugin
 
-[Gimbal](https://github.com/ModusCreateOrg/gimbal) integration for Webpack. Uses the same [configuration](#configuration) as Gimbal to simplify performance budgeting in production builds.
+[Gimbal](https://github.com/ModusCreateOrg/gimbal) integration for Webpack. Uses the same [configuration](https://github.com/ModusCreateOrg/gimbal/#configuration) as Gimbal to simplify performance budgeting in production builds.
 
 ## Getting Started
 
@@ -42,6 +42,38 @@ Gimbal emits a warning or an error to a webpack compilation. It defaults to a wa
 ```
 
 Note: webpack config also uses `bail` configuration to break execution on errors. GimbalPlugin uses the same verbiage, but it will not bubble up to Webpack's config. It's entirely isolated to this usecase.
+
+### Gimbal Configuration Example
+
+You can use [Gimbal configuration](https://github.com/ModusCreateOrg/gimbal/#configuration) in `.gimbalrc.yml` like the following:
+
+```yaml
+configs:
+  heap-snapshot:
+    threshold:
+      Documents: 5
+      Frames: 2
+      JSHeapTotalSize: 23356000
+      JSHeapUsedSize: 15068000
+      Nodes: 800
+      RecalcStyleCount: 9
+  lighthouse:
+    threshold:
+      accessibility: 93
+      'best-practices': 90
+      performance: 50
+      pwa: 75
+      seo: 100
+  size:
+    - path: ./build/precache-*.js
+      maxSize: 500 B
+    - path: ./build/static/js/*.chunk.js
+      maxSize: 1 MB
+    - path: ./build/static/js/runtime*.js
+      maxSize: 10 KB
+    - path: ./build/
+      maxSize: 18 MB
+```
 
 ## Questions and Support
 

@@ -13,6 +13,10 @@ const { audit } = require('@modus/gimbal');
  * @prop {boolean} [comment] - Output comments
  * @prop {boolean} [verbose] - Verbose output for debugging
  * @prop {boolean} [checkThresholds] - Check custom thresholds. Defaults to true
+ * @prop {boolean} [size] - Run size audit
+ * @prop {boolean} [calculateUnusedSource] - Run unused source audit
+ * @prop {boolean} [heapSnapshot] - Run heap size audit
+ * @prop {boolean} [lighthouse] - Run lighthouse audit
  */
 
 /**
@@ -45,6 +49,10 @@ module.exports = class GimbalPlugin {
         comment: true,
         verbose: false,
         checkThresholds: true,
+        size: true,
+        calculateUnusedSource: true,
+        heapSnapshot: true,
+        lighthouse: true,
       },
     };
 

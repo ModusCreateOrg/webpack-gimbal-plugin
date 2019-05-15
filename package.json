@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/ModusCreateOrg/webpack-gimbal-plugin#readme",
   "dependencies": {
-    "@modus/gimbal": "^1.0.7"
+    "@modus/gimbal": "^1.0.8"
   }
 }

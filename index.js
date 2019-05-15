@@ -1,6 +1,4 @@
 // @ts-check
-const { audit } = require('@modus/gimbal');
-
 /**
  * @typedef {Object} Config
  * @property {boolean} bail - True to throw an error for each failed audit. False to use warnings instead. Defaults to false.
@@ -63,10 +61,12 @@ module.exports = class GimbalPlugin {
   }
 
   async executeAudits(context, compilation, cb) {
-    if (compilation.options.mode !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       // We only want Gimbal to run in prod
       cb();
     }
+
+    const { audit } = require('@modus/gimbal');
 
     const reportProgress = context && context.reportProgress;
     if (reportProgress) reportProgress(0, 'Starting performance audit');

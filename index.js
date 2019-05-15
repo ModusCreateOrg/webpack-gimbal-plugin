@@ -64,6 +64,7 @@ module.exports = class GimbalPlugin {
     if (process.env.NODE_ENV !== 'production') {
       // We only want Gimbal to run in prod
       cb();
+      return;
     }
 
     const { audit } = require('@modus/gimbal');

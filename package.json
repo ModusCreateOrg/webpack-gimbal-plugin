@@ -1,6 +1,6 @@
 {
   "name": "webpack-gimbal-plugin",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Webpack plugin that utilizes Gimbal to maintain performance budgets",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/ModusCreateOrg/webpack-gimbal-plugin#readme",
   "dependencies": {
-    "@modus/gimbal": "^1.0.8"
+    "@modus/gimbal": "^1.0.12"
   }
 }

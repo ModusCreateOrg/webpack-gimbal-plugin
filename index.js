@@ -2,6 +2,7 @@
 /**
  * @typedef {Object} Config
  * @property {boolean} bail - True to throw an error for each failed audit. False to use warnings instead. Defaults to false.
+ * @property {boolean | string} optimizationBailout - Optional optimizationBailout results exported to a file. Set to true of filename.
  * @property {GimbalOptions} options - Gimbal options
  */
 
@@ -38,10 +39,13 @@
  * @prop {boolean} [success] - Success
  */
 
+const fs = require('fs');
+
 module.exports = class GimbalPlugin {
   constructor(options) {
     const defaults = {
       bail: false,
+      optimizationBailout: false,
       options: {
         buildDir: '',
         comment: true,
@@ -123,5 +127,31 @@ module.exports = class GimbalPlugin {
       },
       this.executeAudits.bind(this),
     );
+
+    if (this.cfg.optimizationBailout) {
+      compiler.hooks.done.tapAsync(
+        {
+          name: 'GimbalPlugin',
+          context: true,
+        },
+        stats => {
+          const optimizationBailout = this.cfg.optimizationBailout;
+          const bailout = stats
+            .toJson({ optimizationBailout: true, maxModules: Infinity })
+            .modules.map(mod =>
+              Array.isArray(mod.optimizationBailout) && mod.optimizationBailout.length
+                ? [mod.name, mod.optimizationBailout, mod.chunks]
+                : false,
+            )
+            .filter(Boolean)
+            .filter(([name]) => !name.match(/node_modules|\(webpack\)|\(ignored\)|^multi/))
+            .filter(([, modules]) => !modules.toString().match(/import\(\)|HMR/));
+
+          const fileName = typeof optimizationBailout === 'string' ? optimizationBailout : 'bailout.json';
+          // @ts-ignore
+          fs.writeFile(fileName, JSON.stringify(bailout), 'utf8');
+        },
+      );
+    }
   }
 };
